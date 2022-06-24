@@ -1,9 +1,8 @@
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`mall_admin` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`gulimall_admin` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `mall_admin`;
+USE `gulimall_admin`;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
 -- 菜单
 CREATE TABLE `sys_menu` (
   `menu_id` bigint NOT NULL AUTO_INCREMENT,

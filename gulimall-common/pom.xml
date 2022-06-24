@@ -27,6 +27,10 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 <!--            <version>${spring-cloud-alibaba.version}</version>-->
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
+        </dependency>
 
         <!--sentinel和actuator用于流量监控和统计-->
 <!--        <dependency>&lt;!&ndash;流量监控&ndash;&gt;-->
