@@ -5,7 +5,6 @@ import com.alibaba.fastjson.TypeReference;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,7 +15,6 @@ import java.util.Map;
 public class R extends HashMap<String, Object> {
 
 	private static final long serialVersionUID = 1L;
-
 
 	/**
 	 * @param key 获取指定key的名字
