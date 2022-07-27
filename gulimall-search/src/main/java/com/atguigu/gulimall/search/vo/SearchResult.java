@@ -17,19 +17,19 @@ public class SearchResult {
 
 
     @Data
-    private static class CatalogVo{
+    public static class CatalogVo{
         private Long catalogId;
         private String catalogName;
     }
     @Data
-    private static class BrandVo{
+    public static class BrandVo{
         private Long brandId;
         private String brandName;
         private String brandImg;
     }
 
     @Data
-    private static class AttrVo{
+    public static class AttrVo{
         private Long attrId;
         private String attrName;
         private List<String> attrValues;
