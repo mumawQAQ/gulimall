@@ -5,11 +5,12 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GulimallElasticSearchConfig {
+public class GuliESConfig {
     public static final RequestOptions COMMON_OPTIONS;
 
     static {
@@ -17,6 +18,9 @@ public class GulimallElasticSearchConfig {
         COMMON_OPTIONS = builder.build();
     }
 
+    /**
+     * final String hostname, final int port, final String scheme
+     */
     @Bean
     public RestHighLevelClient esRestClient() {
 

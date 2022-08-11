@@ -1,7 +1,8 @@
 package com.atguigu.gulimall.search;
 
 import com.alibaba.fastjson.JSON;
-import com.atguigu.gulimall.search.config.GulimallElasticSearchConfig;
+import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.search.feign.ProductFeignService;
 import lombok.Data;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
@@ -30,45 +31,11 @@ public class GulimallSearchApplicationTests {
     @Autowired
     private RestHighLevelClient restHighLevelClient;
 
+    @Autowired
+    ProductFeignService productFeignService;
     @Test
-    public void test() throws IOException {
-        IndexRequest indexRequest = new IndexRequest("users")
-                .id("1");
-        //                .source("name", "zhangsan", "age", 20, "address", "beijing");
-        User user = new User();
-        user.setName("zhangsan");
-        user.setAge(20);
-        user.setAddress("beijing");
-        String s = JSON.toJSONString(user);
-        indexRequest.source(s, XContentType.JSON);
-        IndexResponse index = restHighLevelClient.index(indexRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);
-        System.out.println(index);
-    }
-
-    @Test
-    public void test1() throws IOException {
-        SearchRequest searchRequest = new SearchRequest();
-        searchRequest.indices("users");
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-//        searchSourceBuilder.query();
-//        searchSourceBuilder.from();
-//        searchSourceBuilder.size();
-//        searchSourceBuilder.aggregation();
-        searchSourceBuilder.query(QueryBuilders.matchQuery("name", "zhangsan"));
-        searchSourceBuilder.aggregation(AggregationBuilders.terms("group_by_age").field("age").size(10));
-        searchSourceBuilder.aggregation(AggregationBuilders.avg("avg_age").field("age"));
-
-        searchRequest.source(searchSourceBuilder);
-        SearchResponse search = restHighLevelClient.search(searchRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);
-//        Map map = JSON.parseObject(search.toString(), Map.class);
-        System.out.println(search.toString());
-    }
-
-    @Data
-    class User{
-        private String name;
-        private Integer age;
-        private String address;
+    public void feign() {
+        R attrsInfo = productFeignService.getAttrsInfo(1L);
     }
 
 }

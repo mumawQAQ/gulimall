@@ -1,6 +1,18 @@
 package com.atguigu.gulimall.search.constant;
 
+/**
+ * <p>Title: EsConstant</p>
+ * Description：  注意es中的索引匹配好名字
+ */
 public class EsConstant {
-    public static final String PRODUCT_INDEX = "product";
-    public static final Integer PRODUCT_PAGE_SIZE = 2;
+
+	/**
+	 * sku数据在ES中的索引
+	 */
+	public static final String PRODUCT_INDEX = "product";
+
+	/**
+	 * 分页的大小
+	 */
+	public static final int PRODUCT_PASIZE = 2;
 }

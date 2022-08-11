@@ -14,27 +14,33 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * <p>Title: ElasticSaveController</p>
+ * Description：商品上架 Controller
+ * date：2020/6/8 21:13
+ */
 @Slf4j
 @RequestMapping("/search/save")
 @RestController
 public class ElasticSaveController {
 
-    @Autowired
-    private ProductSaveService productSaveService;
-    @PostMapping("/product")
-    public R pruductStatusUp(@RequestBody List<SkuEsModel> skuEsModels){
-        boolean b = false;
-        try {
-            b = productSaveService.productStatusUp(skuEsModels);
-        } catch (IOException e) {
-            log.error("保存商品到es失败！{}",e);
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
-        }
+	@Autowired
+	private ProductSaveService productSaveService;
 
-        if (!b){
-            return R.ok();
-        }else {
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
-        }
-    }
+	/*** 上架商品*/
+	@PostMapping("/product") // ElasticSaveController
+	public R productStatusUp(@RequestBody List<SkuEsModel> skuEsModels){
+
+		boolean status;
+		try {
+			status = productSaveService.productStatusUp(skuEsModels);
+		} catch (IOException e) {
+			log.error("ElasticSaveController商品上架错误: {}", e);
+			return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
+		}
+		if(!status){
+			return R.ok();
+		}
+		return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
+	}
 }
